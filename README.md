@@ -1,11 +1,11 @@
 # Neural Ledger
 
+[![CI](https://github.com/alfiewalker/neural-ledger/actions/workflows/ci.yml/badge.svg)](https://github.com/alfiewalker/neural-ledger/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/neural-ledger)](https://pypi.org/project/neural-ledger/)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![GitHub](https://img.shields.io/badge/github-alfiewalker%2Fneural--ledger-lightgrey?logo=github)](https://github.com/alfiewalker/neural-ledger)
 
-**Memory is not just storage. It is judgement on what to store.**
+**Memory is not just storage. It is judgement about what deserves to become memory.**
 
 Neural Ledger is a lightweight memory engine for software and agents. It helps systems **remember useful things**, **recall what matters**, and **learn from feedback**.
 
