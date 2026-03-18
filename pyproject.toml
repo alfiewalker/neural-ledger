@@ -7,10 +7,11 @@ name = "neural-ledger"
 version = "0.1.0a1"
 description = "A lightweight memory engine that helps systems remember useful things, recall what matters, and learn from feedback."
 readme = "README.md"
-license = { file = "LICENSE" }
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.11"
 authors = [
-    { name = "Alfie Walker", email = "" },
+    { name = "Alfie Walker" },
 ]
 keywords = [
     "memory", "agent", "retrieval", "feedback", "learning",
@@ -19,7 +20,6 @@ keywords = [
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
