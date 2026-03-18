@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neural-ledger"
+version = "0.1.0a1"
+description = "A lightweight memory engine that helps systems remember useful things, recall what matters, and learn from feedback."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+authors = [
+    { name = "Alfie Walker", email = "" },
+]
+keywords = [
+    "memory", "agent", "retrieval", "feedback", "learning",
+    "llm", "ai", "knowledge", "multi-agent",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "networkx>=3.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/alfiewalker/neural-ledger"
+Repository = "https://github.com/alfiewalker/neural-ledger"
+Documentation = "https://github.com/alfiewalker/neural-ledger/tree/main/docs"
+"Bug Tracker" = "https://github.com/alfiewalker/neural-ledger/issues"
+
+[project.optional-dependencies]
+semantic = [
+    "sentence-transformers>=2.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["neural_ledger*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "benchmarks"]

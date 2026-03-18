@@ -1,0 +1,87 @@
+{
+  "scenario_id": "coding_agent_failure_memory_v1",
+  "records": [
+    {
+      "id": "r1",
+      "kind": "observation",
+      "content": "GitHub API request failed with 401 because the access token had expired.",
+      "metadata": {"tags": ["github", "api", "auth", "failure", "token", "401"]}
+    },
+    {
+      "id": "r2",
+      "kind": "procedure",
+      "content": "Refreshing the GitHub token and retrying fixed the 401 error.",
+      "metadata": {"tags": ["github", "api", "auth", "fix", "token", "retry"]}
+    },
+    {
+      "id": "r3",
+      "kind": "observation",
+      "content": "GitHub API rate limit caused a temporary 403 response.",
+      "metadata": {"tags": ["github", "api", "rate_limit", "failure", "403"]}
+    },
+    {
+      "id": "r4",
+      "kind": "observation",
+      "content": "Slack webhook failed because the signing secret was missing.",
+      "metadata": {"tags": ["slack", "webhook", "auth", "failure"]}
+    },
+    {
+      "id": "r5",
+      "kind": "note",
+      "content": "Use terse bullet points in status updates.",
+      "metadata": {"tags": ["writing", "preference"]}
+    },
+    {
+      "id": "r6",
+      "kind": "observation",
+      "content": "Database connection failed due to an incorrect host value.",
+      "metadata": {"tags": ["database", "config", "failure"]}
+    },
+    {
+      "id": "r7",
+      "kind": "procedure",
+      "content": "Check whether the environment variables are loaded before retrying an API call.",
+      "metadata": {"tags": ["api", "env", "troubleshooting"]}
+    },
+    {
+      "id": "r8",
+      "kind": "observation",
+      "content": "GitHub pull request fetch worked after widening repository permissions.",
+      "metadata": {"tags": ["github", "permissions", "success"]}
+    },
+    {
+      "id": "r9",
+      "kind": "note",
+      "content": "Retry with exponential backoff for transient upstream failures.",
+      "metadata": {"tags": ["retry", "resilience"]}
+    },
+    {
+      "id": "r10",
+      "kind": "observation",
+      "content": "The CI pipeline failed because the package lockfile was out of date.",
+      "metadata": {"tags": ["ci", "build", "dependency"]}
+    }
+  ],
+  "queries": [
+    {
+      "id": "q1",
+      "text": "How should I fix this GitHub API 401 failure?",
+      "oracle_useful": ["r1", "r2"]
+    },
+    {
+      "id": "q2",
+      "text": "What past context is most useful for a failing authenticated GitHub API call?",
+      "oracle_useful": ["r1", "r2", "r7"]
+    }
+  ],
+  "feedback_positive": {
+    "target_ids": ["r1", "r2"],
+    "helped": 1.0,
+    "reason": "These captured the true cause and the successful fix."
+  },
+  "feedback_negative": {
+    "target_ids": ["r3"],
+    "helped": 0.0,
+    "reason": "Rate limiting looked similar but was not the cause of the 401."
+  }
+}

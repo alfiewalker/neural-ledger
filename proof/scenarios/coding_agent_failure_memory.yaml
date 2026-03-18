@@ -1,0 +1,136 @@
+scenario_id: coding_agent_failure_memory_v1
+version: 1
+description: >
+  A coding agent previously encountered a GitHub API 401 failure caused by
+  an expired access token. Later, facing a similar error, it should recall
+  the true cause and successful fix — ranked above misleading near-matches.
+  Positive feedback should further reinforce those useful records.
+
+arc: "attempt → failure → remember cause → recall on attempt_2 → feedback → better ranking"
+
+# ── Records ─────────────────────────────────────────────────────────────────
+
+records:
+  - id: r1
+    kind: observation
+    content: "GitHub API request failed with 401 because the access token had expired."
+    tags: [github, api, auth, failure, token, 401]
+    useful_for: [q1, q2]
+
+  - id: r2
+    kind: procedure
+    content: "Refreshing the GitHub token and retrying fixed the 401 error."
+    tags: [github, api, auth, fix, token, retry]
+    useful_for: [q1, q2]
+
+  - id: r3
+    kind: observation
+    content: "GitHub API rate limit caused a temporary 403 response."
+    tags: [github, api, rate_limit, failure, 403]
+    useful_for: []          # misleading near-match — same domain, wrong cause
+
+  - id: r4
+    kind: observation
+    content: "Slack webhook failed because the signing secret was missing."
+    tags: [slack, webhook, auth, failure]
+    useful_for: []          # auth failure but wrong service
+
+  - id: r5
+    kind: note
+    content: "Use terse bullet points in status updates."
+    tags: [writing, preference]
+    useful_for: []          # unrelated
+
+  - id: r6
+    kind: observation
+    content: "Database connection failed due to an incorrect host value."
+    tags: [database, config, failure]
+    useful_for: []          # different failure domain
+
+  - id: r7
+    kind: procedure
+    content: "Check whether the environment variables are loaded before retrying an API call."
+    tags: [api, env, troubleshooting]
+    useful_for: [q2]        # weakly useful for the broader query
+
+  - id: r8
+    kind: observation
+    content: "GitHub pull request fetch worked after widening repository permissions."
+    tags: [github, permissions, success]
+    useful_for: []          # misleading near-match — same domain, wrong fix
+
+  - id: r9
+    kind: note
+    content: "Retry with exponential backoff for transient upstream failures."
+    tags: [retry, resilience]
+    useful_for: []          # generic best practice, not specific to this failure
+
+  - id: r10
+    kind: observation
+    content: "The CI pipeline failed because the package lockfile was out of date."
+    tags: [ci, build, dependency]
+    useful_for: []          # unrelated
+
+# ── Queries ──────────────────────────────────────────────────────────────────
+
+queries:
+  - id: q1
+    text: "How should I fix this GitHub API 401 failure?"
+    oracle_useful: [r1, r2]
+    note: "Specific — closely matches the cause and fix records."
+
+  - id: q2
+    text: "What past context is most useful for a failing authenticated GitHub API call?"
+    oracle_useful: [r1, r2, r7]
+    note: "Broader — tests generalisation beyond surface wording."
+
+# ── Feedback events ───────────────────────────────────────────────────────────
+
+feedback_positive:
+  target_ids: [r1, r2]
+  helped: 1.0
+  reason: "These captured the true cause and the successful fix."
+
+feedback_negative:
+  target_ids: [r3]
+  helped: 0.0
+  reason: "Rate limiting looked similar but was not the cause of the 401."
+
+# ── Benchmark assertions ──────────────────────────────────────────────────────
+
+assertions:
+  - id: a1
+    description: "After feedback, at least one oracle-useful record in top-3 for q1."
+    query: q1
+    condition: top3_useful
+    phase: after_feedback
+
+  - id: a2
+    description: "After feedback, at least one oracle-useful record in top-3 for q2."
+    query: q2
+    condition: top3_useful
+    phase: after_feedback
+
+  - id: a3
+    description: "Mean useful rank improves after feedback vs before (q1)."
+    query: q1
+    condition: rank_improves
+    phase: comparison
+
+  - id: a4
+    description: "Mean useful rank improves after feedback vs before (q2)."
+    query: q2
+    condition: rank_improves
+    phase: comparison
+
+  - id: a5
+    description: "Neural Ledger after feedback beats keyword baseline on q1."
+    query: q1
+    condition: beats_keyword
+    phase: after_feedback
+
+  - id: a6
+    description: "Neural Ledger after feedback beats keyword baseline on q2."
+    query: q2
+    condition: beats_keyword
+    phase: after_feedback
