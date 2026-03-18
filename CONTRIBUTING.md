@@ -62,7 +62,7 @@ A few rules that govern this project:
 3. **Feedback is not decorative.** Every change to retrieval ranking must be traceable back to feedback signals.
 4. **Preserve the interesting mechanics.** Semantic retrieval, keyword fallback, path expansion, usefulness prior, evidence history, decay, and uncertainty must all survive refactoring.
 
-See `docs/implementation/00-source-truth-and-fidelity.md` for the complete fidelity contract.
+See `docs/internal/00-source-truth-and-fidelity.md` for the complete fidelity contract.
 
 ## What is worth contributing
 
@@ -94,4 +94,4 @@ Default preserves existing behaviour.
 
 ## Questions
 
-Open an issue or start a discussion. The decision log (`docs/implementation/90-decision-log.md`) records why key architectural choices were made — worth reading before proposing structural changes.
+Open an issue or start a discussion. The decision log (`docs/internal/90-decision-log.md`) records why key architectural choices were made — worth reading before proposing structural changes.

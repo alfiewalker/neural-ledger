@@ -76,7 +76,7 @@ This release covers four phases of development:
 **Docs**
 - `docs/examples/failure-memory.md` — Phase 2 proof walkthrough with benchmark numbers
 - `docs/examples/shared-memory.md` — Phase 3B shared memory model and API
-- `docs/implementation/` — full spec, decision log, and build phases
+- `docs/internal/` — full spec, decision log, and build phases
 
 ### Known limitations
 

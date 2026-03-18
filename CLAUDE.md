@@ -82,4 +82,4 @@ No persistence, no Neo4j, no public contradiction API, no forgetting API, no fra
 
 ## Docs
 
-`docs/implementation/` — 00 (fidelity contract), 01 (why/what/how), 02 (proof strategy), 10 (feature spec), 20 (technical spec), 30 (build phases), 40 (evaluation), 90 (decision log).
+`docs/internal/` — 00 (fidelity contract), 01 (why/what/how), 02 (proof strategy), 10 (feature spec), 20 (technical spec), 30 (build phases), 40 (evaluation), 90 (decision log).

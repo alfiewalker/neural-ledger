@@ -354,7 +354,7 @@ This avoids the need for a new access-control layer in Phase 3B.
 - Phase 3B stays within Phase 3A's single-writer SQLite constraint
 - Evidence attribution per agent (who gave which feedback) is deferred to Phase 4
 - Shared scope is namespace-bounded (Q3 locked — see D-019)
-- Full spec at `docs/implementation/32-phase-3b-shared-memory.md`
+- Full spec at `docs/internal/32-phase-3b-shared-memory.md`
 
 **Status**
 Locked

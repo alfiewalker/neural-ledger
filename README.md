@@ -375,6 +375,14 @@ for hit in hits:
 mem.feedback(hits, helped=True, reason="The preference was relevant")
 ```
 
+## Docs
+
+- [Proof: feedback improves recall](docs/examples/failure-memory.md) — controlled benchmark showing the learning effect
+- [Shared memory across agents](docs/examples/shared-memory.md) — two-agent scenario with provenance-preserving recall
+- [`examples/`](examples/) — runnable scripts for quickstart and shared memory
+
+Internal design docs (architecture, decision log, phase history) live in [`docs/internal/`](docs/internal/) for those who want them.
+
 ## Contributing
 
 Neural Ledger is being built in the open.

@@ -56,8 +56,8 @@ pip install -e .
 
 - [ ] `docs/examples/failure-memory.md` — benchmark numbers match actual script output
 - [ ] `docs/examples/shared-memory.md` — code examples run without modification
-- [ ] `docs/implementation/30-build-phases.md` — phase table shows Phases 1–3B as Complete
-- [ ] `docs/implementation/90-decision-log.md` — D-016 through D-019 present
+- [ ] `docs/internal/30-build-phases.md` — phase table shows Phases 1–3B as Complete
+- [ ] `docs/internal/90-decision-log.md` — D-016 through D-019 present
 
 ---
 
